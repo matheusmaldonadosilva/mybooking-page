@@ -8,9 +8,11 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from "date-fns";
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Header() {
+function Header({type}) {
 
+  const [destionation, setDestination] = useState('');
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -25,7 +27,9 @@ function Header() {
     adult: 1,
     children: 0,
     room: 1
-  })
+  });
+
+  const navigate = useNavigate();
 
   const handleOption = (name, operation) => {
     setOptions((prev)=>{
@@ -34,10 +38,14 @@ function Header() {
     }})
   }
 
+  const handleSearch = (name, operation) => {
+    navigate('/hotels', {state: {destionation, date, options}})
+  }
+
   return (
- 
+
     <div className="header">
-      <div className="headerContainer">
+      <div className={type === 'list' ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
@@ -60,13 +68,15 @@ function Header() {
             <span>Airport taxis</span>
           </div>
         </div>
+        {type !== 'list' &&
+        <>
         <h1 className="headerTitle">A lifetime of discounts? It's Genius</h1>
         <p className="headerDesc">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
         <button className="headerBtn">Sign in/ Register</button>
         <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} className="headerIcon" />
-            <input type="text" placeholder="Where are you going?" className="headerSearchInput" />
+            <input type="text" placeholder="Where are you going?" className="headerSearchInput" onChange={(e) => setDestination(e.target.value)} />
           </div>
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
@@ -78,16 +88,17 @@ function Header() {
                 moveRangeOnFirstSelection={false}
                 ranges={date}
                 className="date"
+                minDate={new Date()}
               />}
           </div>
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">{`${options.adult} adult . ${options.children} children . ${options.room} room`}</span>
-            <div className="options">
+            <span onClick={() =>setOpenOptions(!openOptions)} className="headerSearchText">{`${options.adult} adult . ${options.children} children . ${options.room} room`}</span>
+            {openOptions && <div className="options">
               <div className="optionItem">
                 <span className="optionText">Adult</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton" onClick={()=>handleOption('adult', 'd')}>-</button>
+                  <button disabled={options.adult <= 1} className="optionCounterButton" onClick={()=>handleOption('adult', 'd')}>-</button>
                   <span className="optionCounterNumber">{options.adult}</span>
                   <button className="optionCounterButton" onClick={()=>handleOption('adult', 'i')}>+</button>
                 </div>
@@ -95,7 +106,7 @@ function Header() {
               <div className="optionItem">
                 <span className="optionText">Children</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton" onClick={()=>handleOption('children', 'd')}>-</button>
+                  <button disabled={options.children <= 1} className="optionCounterButton" onClick={()=>handleOption('children', 'd')}>-</button>
                   <span className="optionCounterNumber">{options.children}</span>
                   <button className="optionCounterButton" onClick={()=>handleOption('children', 'i')}>+</button>
                 </div>
@@ -103,17 +114,17 @@ function Header() {
               <div className="optionItem">
                 <span className="optionText">Room</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton" onClick={()=>handleOption('room', 'd')}>-</button>
+                  <button disabled={options.room <= 1} className="optionCounterButton" onClick={()=>handleOption('room', 'd')}>-</button>
                   <span className="optionCounterNumber">{options.room}</span>
                   <button className="optionCounterButton" onClick={()=>handleOption('room', 'i')}>+</button>
                 </div>
               </div>
-            </div>
+            </div> }
           </div>
           <div className="headerSearchItem">
-            <button className="headerBtn">Search</button>
+            <button className="headerBtn" onClick={handleSearch}>Search</button>
           </div>
-        </div>
+        </div></>}
       </div>
     </div>
   )

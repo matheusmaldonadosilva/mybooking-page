@@ -12,6 +12,10 @@
     margin: 20px 0px 100px 0px;
 }
 
+.headerContainer .listMode {
+    margin: 20px 0 0 0;
+}
+
 .headerList {
     display: flex;
     gap: 40px;
@@ -56,7 +60,6 @@
     bottom: -25px;
     width: 100%;
     max-width: 1024px;
-
 }
 
 .headerIcon {
@@ -83,9 +86,11 @@
 .date {
     position: absolute;
     top: 50px;
+    z-index: 2;
 }
 
 .options {
+    z-index: 2;
     position: absolute;
     top: 50px;
     background-color: white;
@@ -117,4 +122,8 @@
     color: #0071c2;
     cursor: pointer;
     background-color: white;
+}
+
+.optionCounterButton:disabled {
+    cursor: not-allowed;
 }
