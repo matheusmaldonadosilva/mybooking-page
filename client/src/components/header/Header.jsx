@@ -75,7 +75,7 @@ function Header({type}) {
         <>
         <h1 className="headerTitle">A lifetime of discounts? It's Genius</h1>
         <p className="headerDesc">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        <button className="headerBtn">Sign in/ Register</button>
+        {<button className="headerBtn">Sign in/ Register</button>}
         <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} className="headerIcon" />
