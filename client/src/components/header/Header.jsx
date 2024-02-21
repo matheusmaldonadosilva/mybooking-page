@@ -10,6 +10,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from "date-fns";
 import { useNavigate } from 'react-router-dom';
 import { SearchContent } from '../../context/SearchContext';
+import { AuthContent } from '../../context/AuthContext';
 
 function Header({type}) {
 
@@ -31,6 +32,7 @@ function Header({type}) {
   });
 
   const navigate = useNavigate();
+  const { user } = useContext(AuthContent);
 
   const handleOption = (name, operation) => {
     setOptions((prev)=>{
@@ -75,7 +77,7 @@ function Header({type}) {
         <>
         <h1 className="headerTitle">A lifetime of discounts? It's Genius</h1>
         <p className="headerDesc">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        {<button className="headerBtn">Sign in/ Register</button>}
+        {!user && <button className="headerBtn">Sign in/ Register</button>}
         <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} className="headerIcon" />
