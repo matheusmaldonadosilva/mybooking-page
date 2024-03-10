@@ -1,37 +1,41 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./reserve.css";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
+import "./reserve.css";
 import useFetch from "../../hooks/useFetch";
 import { useContext, useState } from "react";
-import { SearchContent } from "../../context/SearchContext";
-import axios from 'axios';
+import { SearchContext } from "../../context/SearchContext";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`hotels/room/${hotelId}`);
-  const { dates } = useContext(SearchContent);
+  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
+
     const date = new Date(start.getTime());
 
-    let dates = [];
+    const dates = [];
 
     while (date <= end) {
       dates.push(new Date(date).getTime());
       date.setDate(date.getDate() + 1);
     }
+
     return dates;
   };
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
   const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavaibleDates.some((date) =>
+    const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     );
+
     return !isFound;
   };
 
@@ -58,7 +62,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         })
       );
       setOpen(false);
-      navigate('/')
+      navigate("/");
     } catch (err) {}
   };
   return (
@@ -71,7 +75,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         />
         <span>Select your rooms:</span>
         {data.map((item) => (
-          <div className="rItem">
+          <div className="rItem" key={item._id}>
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
               <div className="rDesc">{item.desc}</div>
@@ -80,9 +84,8 @@ const Reserve = ({ setOpen, hotelId }) => {
               </div>
               <div className="rPrice">{item.price}</div>
             </div>
-            <div className="rSelectRooms"></div>
-            {item.roomNumbers.map((roomNumber) => (
-              <div className="room">
+            <div className="rSelectRooms">
+              {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>
                   <input
@@ -92,8 +95,8 @@ const Reserve = ({ setOpen, hotelId }) => {
                     disabled={!isAvailable(roomNumber)}
                   />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ))}
         <button onClick={handleClick} className="rButton">
