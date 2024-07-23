@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# 🏨 MyBooking
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MyBooking is a hotel booking application similar to Booking.com. Developed with ReactJS on the frontend and Node.js on the backend, the application allows users to explore and book hotel rooms. Administrators can add, edit, and remove hotels and rooms through an admin panel.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Users:**
+  - View available hotels and rooms.
+  - Book rooms.
+  - View booking history.
 
-### `npm start`
+- **Administrators:**
+  - Add, edit, and remove hotels.
+  - Add, edit, and remove rooms.
+  - Admin panel for management.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
 
-### `npm test`
+- **ReactJS:** JavaScript library for building user interfaces.
+- **TailwindCSS:** CSS framework for styling.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
 
-### `npm run build`
+- **Node.js:** JavaScript runtime environment for server-side development.
+- **Express:** Web framework for Node.js.
+- **MongoDB:** NoSQL database for data storage.
+- **Mongoose:** ODM library for MongoDB.
+- **JWT (jsonwebtoken):** Implementation of authentication via JWT tokens.
+- **BcryptJS:** Library for password hashing.
+- **Nodemon:** Tool for developing Node.js applications.
+- **Cookie-parser:** Middleware for parsing cookies.
+- **CORS:** Middleware to enable CORS.
+- **Dotenv:** Library to load environment variables.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
