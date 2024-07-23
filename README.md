@@ -36,4 +36,4 @@ MyBooking is a hotel booking application similar to Booking.com. Developed with 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
